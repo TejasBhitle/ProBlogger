@@ -9,7 +9,8 @@
                 <b>Title:</b> {{ post.title }} <br>
                 <b>Content:</b> {{ post.content }} <br>
             </li>
-            <br>
+            <a href="/posts/detail/{{post.id}}">Details</a>
+            <br><br>
             {% endfor %}
 
         </ul>
