@@ -1,0 +1,21 @@
+<html>
+    <body>
+
+        <h1> {{ title }} </h1>
+
+        <ul>
+            {% for post in post_list %}
+            <li>
+                <b>Title:</b> {{ post.title }} <br>
+                <b>Content:</b> {{ post.content }} <br>
+            </li>
+            <br>
+            {% endfor %}
+
+        </ul>
+
+
+
+    </body>
+
+</html>
