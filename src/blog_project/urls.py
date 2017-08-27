@@ -17,10 +17,10 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from .views import (home)
+from .views import home
 
 urlpatterns = [
-    url(r'^/', home),
+    url(r'^', home),
     url(r'^admin/', admin.site.urls),
     url(r'^posts/', include("posts.urls"))
 ]
