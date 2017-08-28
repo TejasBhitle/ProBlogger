@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.shortcuts import HttpResponse
+from django.shortcuts import HttpResponse, HttpResponseRedirect
 
 
 from .models import Post
@@ -22,11 +22,12 @@ def post_create(request):
     if form.is_valid():
         instance = form.save(commit=False)
         instance.save()
+        return HttpResponseRedirect(instance.get_absolute_url())
 
     context = {
         "form": form,
     }
-    return render(request, "post_create_form.html", context)
+    return render(request, "post_form.html", context)
 
 
 def post_detail(request, post_id):
@@ -35,3 +36,19 @@ def post_detail(request, post_id):
         "post": instance
     }
     return render(request, "post_detail.html", context)
+
+
+def post_edit(request, post_id=None):
+    instance = get_object_or_404(Post, id=post_id)
+    form = PostForm(request.POST or None, instance=instance)  # so that null fields dont pass through
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+        return HttpResponseRedirect(instance.get_absolute_url())
+
+    context = {
+        "title": instance.title,
+        "instance": instance,
+        "form": form
+    }
+    return render(request, "post_form.html", context)

@@ -16,3 +16,6 @@ class Post(models.Model):
     # for python 3
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return "/posts/%s/" %(self.id)
