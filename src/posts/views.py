@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.shortcuts import HttpResponse, HttpResponseRedirect
 
 
@@ -52,3 +52,9 @@ def post_edit(request, post_id=None):
         "form": form
     }
     return render(request, "post_form.html", context)
+
+
+def post_delete(request, post_id=None):
+    instance = get_object_or_404(Post, id=post_id)
+    instance.delete()
+    return redirect("posts:list")

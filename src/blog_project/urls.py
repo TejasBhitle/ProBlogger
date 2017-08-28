@@ -22,5 +22,5 @@ from .views import home
 urlpatterns = [
     url(r'^$', home),
     url(r'^admin/', admin.site.urls),
-    url(r'^posts/', include("posts.urls"))
+    url(r'^posts/', include("posts.urls", namespace="posts"))
 ]
