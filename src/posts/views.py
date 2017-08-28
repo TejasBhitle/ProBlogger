@@ -3,6 +3,7 @@ from django.shortcuts import HttpResponse
 
 
 from .models import Post
+from .forms import PostForm
 
 # Create your views here.
 
@@ -17,7 +18,15 @@ def post_list(request):
 
 
 def post_create(request):
-    return HttpResponse("<h1>Post Create</h1>")
+    form = PostForm(request.POST or None)  # so that null fields dont pass through
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+
+    context = {
+        "form": form,
+    }
+    return render(request, "post_create_form.html", context)
 
 
 def post_detail(request, post_id):

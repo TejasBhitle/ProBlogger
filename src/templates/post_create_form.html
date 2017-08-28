@@ -1,0 +1,17 @@
+<html>
+<body>
+
+    <h1>Create Post</h1>
+
+    <form method='POST' action=''>
+         <!-- Every form field should have this tag to prevent form cross sire request forgery -->
+        {% csrf_token %}
+
+        <!--as_p  means as paragraph-->
+        {{ form.as_p }}
+        <input type='submit' value='Create Post'/>
+    </form>
+
+</body>
+
+</html>
