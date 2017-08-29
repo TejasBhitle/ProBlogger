@@ -1,6 +1,8 @@
-<html>
+{% extends "base.html" %}
 
-    <body>
+{% block head.title %} {{ post.title }} | {{ block.super }} {% endblock head.title %}
+
+{% block content %}
 
     <h1>{{ post.title }}</h1>
     <br>
@@ -10,6 +12,4 @@
     Updated at: {{ post.updated }}<br>
 
 
-    </body>
-
-</html>
+{% endblock content %}
