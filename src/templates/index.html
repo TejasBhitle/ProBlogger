@@ -1,17 +1,53 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Welcome To ProBlogger</h1>
 
-    List of urls:
-    <ul>
-        <li>/admin</li>
-        <li>/posts/</li>
-        <li>/posts/id</li>
-    </ul>
-<!--
-<footer>
-    <a href="https://github.com/TejasBhitle/ProBlogger">Source code</a>
-</footer>
--->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header">
+
+                <button class="navbar-toogle-colllapsed" type="button" >
+                    <span class="sr-only" >Toggle Navigation</span> <i class="fa fa-bars"></i>
+                </button>
+
+                <h2 style="margin-top:0px;margin-bottom:0px">ProBlogger</h2>
+
+            </div>
+
+            <div class="collapse nav-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="page-scroll" href="#"> <h4 style="color:#000000;">Sample</h4> </a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="header-content">
+                        <div class="header-content-inner">
+                            <h1>Welcome</h1>
+                            <a href="#" class="btn btn-outline btn-xl page-scroll">Start Now</a>
+                            <br><br><br>
+                            List of urls:
+                            <ul>
+                                <li>/admin</li>
+                                <li>/posts/</li>
+                                <li>/posts/id</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+
 {% endblock content %}
