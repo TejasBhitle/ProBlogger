@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <nav class="navbar">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
 
@@ -10,16 +10,22 @@
                     <span class="sr-only" >Toggle Navigation</span> <i class="fa fa-bars"></i>
                 </button>
 
-                <h2 style="margin-top:0px;margin-bottom:0px">ProBlogger</h2>
+                <h2 style="margin-top:0px;margin-bottom:0px color:white;">ProBlogger</h2>
 
             </div>
 
-            <div class="collapse nav-collapse">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="#"> <h4 style="color:#000000;">Sample</h4> </a>
+                       <a class="page-scroll" href=""><h4>Sign-up</h4></a>
                     </li>
-
+                    <li>
+                        <a class="page-scroll" href="/posts/"><h4>Posts</h4></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="/admin/"><h4>Admin</h4></a>
+                    </li>
                 </ul>
             </div>
 
@@ -40,6 +46,7 @@
                                 <li>/admin</li>
                                 <li>/posts/</li>
                                 <li>/posts/id</li>
+                                <li>/posts/create</li>
                             </ul>
                         </div>
                     </div>
