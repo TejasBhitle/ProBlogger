@@ -6,7 +6,7 @@
 <div class="col-sm-8 col-sm-offset-2">
     <h1>Create Post</h1>
 
-    <form method='POST' action=''>
+    <form method='POST' action='' enctype="multipart/form-data">
          <!-- Every form field should have this tag to prevent form cross sire request forgery -->
         {% csrf_token %}
 

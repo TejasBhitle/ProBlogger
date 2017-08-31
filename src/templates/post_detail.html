@@ -8,6 +8,10 @@
     <div>
         <h1>{{ post.title }} <small>{{ post.created }}</small> </h1>
         <br><hr>
+        {% if post.image %}
+        <img src="{{ post.image.url }}" class="img-responsive"/>
+        <br>
+        {% endif %}
         {{ post.content | linebreaks}}
         <br><br>
         Updated at: {{ post.updated }}<br>

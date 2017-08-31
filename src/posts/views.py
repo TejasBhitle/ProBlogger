@@ -32,7 +32,7 @@ def post_list(request):
 
 
 def post_create(request):
-    form = PostForm(request.POST or None)  # so that null fields dont pass through
+    form = PostForm(request.POST or None, request.FILES or None)  # so that null fields dont pass through
     if form.is_valid():
         instance = form.save(commit=False)
         instance.save()
@@ -54,7 +54,7 @@ def post_detail(request, post_id):
 
 def post_edit(request, post_id=None):
     instance = get_object_or_404(Post, id=post_id)
-    form = PostForm(request.POST or None, instance=instance)  # so that null fields dont pass through
+    form = PostForm(request.POST or None, request.FILES or None, instance=instance)  # so that null fields dont pass through
     if form.is_valid():
         instance = form.save(commit=False)
         instance.save()
