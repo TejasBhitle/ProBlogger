@@ -4,12 +4,12 @@
 
 {% block content %}
 
-    <h1>{{ post.title }}</h1>
-    <br>
-    {{ post.content }}
-    <br><br>
-    Created at: {{ post.created }}<br>
-    Updated at: {{ post.updated }}<br>
+    <div class="col-sm-6 col-sm-offset-3">
+        <h1>{{ post.title }} <small>{{ post.created }}</small> </h1>
+        <br>
+        {{ post.content | linebreaks}}
+        <br><br>
+        Updated at: {{ post.updated }}<br>
 
-
+    </div>
 {% endblock content %}

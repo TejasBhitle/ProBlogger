@@ -2,19 +2,30 @@
 
 {% block content %}
 
-        <h1> {{ title }} </h1>
 
-        <ul>
-            {% for post in post_list %}
-            <li>
-                <b>Title:</b> {{ post.title }} <br>
-                <b>Content:</b> {{ post.content }} <br>
-            </li>
-            <a href="/posts/{{post.id}}">Details</a>
-            <br><br>
-            {% endfor %}
+    <h1> {{ title }} </h1>
 
-        </ul>
+
+    <div class="row">
+        {% for post in post_list %}
+        <div class="col-sm-6 col-sm-4">
+
+                <div class="thumbnail">
+
+                    <div class="caption">
+                        <h3>{{ post.title }} <small>{{ post.created | timesince }}</small> </h3>
+                        <p>{{ post.content | linebreaks | truncatechars:50 }}</p>
+                        <p>
+                            <a href="{{ post.get_absolute_url }}" class="btn btn-primary" role="button">Read</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        <!-- After every two loops this div is added-->
+        {% cycle "" "</div><div class='row'>" %}
+        {% endfor %}
+    </div>
 
 
 {% endblock content %}
