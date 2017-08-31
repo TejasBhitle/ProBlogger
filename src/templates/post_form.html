@@ -3,7 +3,7 @@
 {% block head.title %} new blog | {{ block.super }} {% endblock head.title %}
 
 {% block content %}
-
+<div class="col-sm-8 col-sm-offset-2">
     <h1>Create Post</h1>
 
     <form method='POST' action=''>
@@ -12,7 +12,7 @@
 
         <!--as_p  means as paragraph-->
         {{ form.as_p }}
-        <input type='submit' value='Create Post'/>
+        <input class="btn btn-default" type='submit' value='Create Post'/>
     </form>
-
+</div>
 {% endblock content %}
