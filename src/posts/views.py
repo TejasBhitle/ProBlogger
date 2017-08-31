@@ -9,7 +9,7 @@ from .forms import PostForm
 
 
 def post_list(request):
-    queryset = Post.objects.all()
+    queryset = Post.objects.all().order_by("-created")
     context = {
         "title": "Post Lists",
         "post_list": queryset

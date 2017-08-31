@@ -4,15 +4,20 @@
 
 {% block content %}
 
-<div>
-    <div class="col-sm-6 col-sm-offset-3">
+<div class="col-sm-6 col-sm-offset-3">
+    <div>
         <h1>{{ post.title }} <small>{{ post.created }}</small> </h1>
-        <br>
+        <br><hr>
         {{ post.content | linebreaks}}
         <br><br>
         Updated at: {{ post.updated }}<br>
 
     </div>
+    <br><hr>
+    <a class="btn btn-default" href="/posts/{{ post.id }}/edit"> Edit </a>
+    <a class="btn btn-default" href="/posts/{{ post.id }}/delete"> Delete </a>
+
 </div>
+
 
 {% endblock content %}
