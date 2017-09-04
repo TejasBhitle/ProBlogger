@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.shortcuts import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
+from urllib import quote_plus
 
 
 from .models import Post
@@ -54,6 +55,7 @@ def post_detail(request, post_id):
 
 def post_edit(request, post_id=None):
     instance = get_object_or_404(Post, id=post_id)
+    share_string = quote_plus(instance.content)
     form = PostForm(request.POST or None, request.FILES or None, instance=instance)  # so that null fields dont pass through
     if form.is_valid():
         instance = form.save(commit=False)
@@ -62,6 +64,7 @@ def post_edit(request, post_id=None):
 
     context = {
         "title": instance.title,
+        "share_string": share_string,
         "instance": instance,
         "form": form
     }
