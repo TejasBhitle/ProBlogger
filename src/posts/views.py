@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.shortcuts import HttpResponse, HttpResponseRedirect
+from django.shortcuts import HttpResponse, HttpResponseRedirect, Http404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from urllib import quote_plus
@@ -33,6 +33,8 @@ def post_list(request):
 
 
 def post_create(request):
+    if not request.user.is_staff or not request.user.is_superuser:
+        raise Http404
     form = PostForm(request.POST or None, request.FILES or None)  # so that null fields dont pass through
     if form.is_valid():
         instance = form.save(commit=False)
@@ -54,6 +56,8 @@ def post_detail(request, post_id):
 
 
 def post_edit(request, post_id=None):
+    if not request.user.is_staff or not request.user.is_superuser:
+        raise Http404
     instance = get_object_or_404(Post, id=post_id)
     share_string = quote_plus(instance.content)
     form = PostForm(request.POST or None, request.FILES or None, instance=instance)  # so that null fields dont pass through
@@ -72,6 +76,8 @@ def post_edit(request, post_id=None):
 
 
 def post_delete(request, post_id=None):
+    if not request.user.is_staff or not request.user.is_superuser:
+        raise Http404
     instance = get_object_or_404(Post, id=post_id)
     instance.delete()
     return redirect("posts:list")
