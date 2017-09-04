@@ -38,6 +38,7 @@ def post_create(request):
     form = PostForm(request.POST or None, request.FILES or None)  # so that null fields dont pass through
     if form.is_valid():
         instance = form.save(commit=False)
+        instance.user = request.user
         instance.save()
         return HttpResponseRedirect(instance.get_absolute_url())
 
@@ -60,7 +61,9 @@ def post_edit(request, post_id=None):
         raise Http404
     instance = get_object_or_404(Post, id=post_id)
     share_string = quote_plus(instance.content)
-    form = PostForm(request.POST or None, request.FILES or None, instance=instance)  # so that null fields dont pass through
+
+    # so that null fields dont pass through
+    form = PostForm(request.POST or None, request.FILES or None, instance=instance)
     if form.is_valid():
         instance = form.save(commit=False)
         instance.save()
