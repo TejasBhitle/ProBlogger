@@ -1,37 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-
-                <button class="navbar-toogle-colllapsed" type="button" >
-                    <span class="sr-only" >Toggle Navigation</span> <i class="fa fa-bars"></i>
-                </button>
-
-                <h2 style="margin-top:0px;margin-bottom:0px color:white;">ProBlogger</h2>
-
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                       <a class="page-scroll" href=""><h4>Sign-up</h4></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="/posts/"><h4>Posts</h4></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="/admin/"><h4>Admin</h4></a>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-    </nav>
-
     <header>
         <div class="container">
             <div class="row">
@@ -39,7 +8,7 @@
                     <div class="header-content">
                         <div class="header-content-inner">
                             <h1>Welcome</h1>
-                            <a href="#" class="btn btn-outline btn-xl page-scroll">Start Now</a>
+                            <a href="/posts/" class="btn btn-outline btn-xl page-scroll">View Posts</a>
                             <br><br><br>
                             List of urls:
                             <ul>
@@ -47,14 +16,14 @@
                                 <li>/posts/</li>
                                 <li>/posts/id</li>
                                 <li>/posts/create</li>
+                                <li>/user/register/</li>
+                                <li>/user/login/</li>
+                                <li>/user/logout/</li>
                             </ul>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </header>
-
-
 {% endblock content %}

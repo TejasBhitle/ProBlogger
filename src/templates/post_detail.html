@@ -42,9 +42,10 @@
 
     </div>
     <br><hr>
+    {% if user == post.user %}
     <a class="btn btn-default" href="/posts/{{ post.id }}/edit"> Edit </a>
     <a class="btn btn-default" href="/posts/{{ post.id }}/delete"> Delete </a>
-
+    {% endif %}
 </div>
 
 

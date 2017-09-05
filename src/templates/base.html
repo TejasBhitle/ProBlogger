@@ -27,9 +27,10 @@
 
 <body>
 
-    <div>
-    {% block content %}
+    {% include 'nav_bar.html' %}
 
+    <div style="padding-top:70px;">
+    {% block content %}
 
     {% endblock content %}
     </div>
