@@ -5,6 +5,11 @@
 <div class="col-sm-8 col-sm-offset-2">
     <div class="row">
         <br><br>
+        <form method="get" action="">
+            <input type="text" name="q" placeholder="Search Blog" value="{{ request.GET.q }}">
+            <input type="submit" value="Search">
+        </form>
+        <br><br>
         {% for post in post_list %}
         <div class="col-sm-12 ">
 
@@ -33,7 +38,10 @@
         <div class="pagination">
             <span class="step-links">
                 {% if post_list.has_previous %}
-                    <a href="?{{ page_request_var}}={{ post_list.previous_page_number }}">previous</a>
+                    <a href="?{{ page_request_var}}={{ post_list.previous_page_number }}
+                    {% if request.GET.q  %}& q={{ request.GET.q }}{% endif %}">
+                        previous
+                    </a>
                 {% endif %}
 
                 <span class="current">
@@ -41,7 +49,10 @@
                 </span>
 
                 {% if post_list.has_next %}
-                    <a href="?{{ page_request_var}}={{ post_list.next_page_number }}">next</a>
+                    <a href="?{{ page_request_var}}={{ post_list.next_page_number }}
+                    {% if request.GET.q  %}& q={{ request.GET.q }}{% endif %}">
+                        next
+                    </a>
                 {% endif %}
             </span>
         </div>
