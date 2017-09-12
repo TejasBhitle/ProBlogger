@@ -1,44 +1,34 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
+
         <div class="navbar-header">
-            <!--
-            <button class="navbar-toogle-colllapsed" type="button" >
-                <span class="sr-only" >Toggle Navigation</span> <i class="fa fa-bars"></i>
-            </button>
-            -->
-            <h2>ProBlogger</h2>
+
+            <p class="navbar-text" style="font-size:20px;">ProBlogger</p>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
+
                 {% if user.is_authenticated %}
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                <div class="dropdown navbar-text">
+                    <div class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-expanded="false">
                         {{ user.username }}
-                    </button>
+                    </div>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="/user/logout">Logout</a>
+                        <a class="dropdown-item" href="/user/logout"><p class="navbar-text">Logout</p></a>
                     </div>
                 </div>
+
                 {% else %}
-                <h3><a class="dropdown" href="/user/login"> Login </a></h3>
+
+                    <h3><a class="dropdown" href="/user/login"> Login </a></h3>
+
                 {% endif %}
-                                <!--
-                <li>
-                   <a class="page-scroll" href="/user/register"><h4>Sign-up</h4></a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="/posts/"><h4>Posts</h4></a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="/admin/"><h4>Admin</h4></a>
-                </li>
-                -->
+
             </ul>
         </div>
 
-    </div>
 </nav>
