@@ -21,10 +21,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from .views import home
+from posts.views import post_list
 
 
 urlpatterns = [
-    url(r'^$', home),
+    #url(r'^$', home),
+    url(r'^$', post_list, name='list'),
     url(r'^admin/', admin.site.urls),
     url(r'^posts/', include("posts.urls", namespace="posts")),
     url(r'^user/', include("accounts.urls", namespace="accounts"))

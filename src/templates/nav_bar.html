@@ -1,34 +1,35 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
 
-        <div class="navbar-header">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-            <p class="navbar-text" style="font-size:20px;">ProBlogger</p>
+        {% if user.is_authenticated %}
+
+        <div class="dropdown navbar-text">
+            <button class="btn btn-default dropdown-toggle" type="button"
+                    id="dropdownMenu1" data-toggle="dropdown">
+                    {{ user.username }}
+                <span class="caret"></span>
+            </button>
+              <ul class="dropdown-menu">
+                <li><a href="/posts/create">Create</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/user/logout">Logout</a></li>
+              </ul>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
+        {% else %}
 
-                {% if user.is_authenticated %}
-
-                <div class="dropdown navbar-text">
-                    <div class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-expanded="false">
-                        {{ user.username }}
-                    </div>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="/user/logout"><p class="navbar-text">Logout</p></a>
-                    </div>
-                </div>
-
-                {% else %}
-
-                    <h3><a class="dropdown" href="/user/login"> Login </a></h3>
-
-                {% endif %}
-
-            </ul>
+        <div class="dropdown navbar-text">
+            <button class="btn btn-default ">
+                <a class="dropdown" href="/user/login"> Login </a>
+            </button>
         </div>
+
+        {% endif %}
+
+
+    </div>
 
 </nav>
