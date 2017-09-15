@@ -2,6 +2,10 @@
 
 {% block head.title %} New blog | {{ block.super }} {% endblock head.title %}
 
+{% block head_extra %}
+{{ form.media }}
+{% endblock head_extra %}
+
 {% block content %}
 <div class="col-sm-8 col-sm-offset-2">
     <h1>Create Post</h1>
