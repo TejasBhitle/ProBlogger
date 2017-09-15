@@ -34,6 +34,29 @@
         })
     })
 
+    var titleInput = $('#id_title')
+    var contentInput = $('#id_content')
+
+    function setContent(value){
+        $('#preview-content').html(marked(value))
+        $('#preview-content img').each(function(){
+            $(this).addClass('img-responsive')
+        })
+    }
+    setContent(contentInput.val())
+    contentInput.keyup(function(){
+        setContent($(this).val())
+    })
+
+    function setTitle(value){
+        $('#preview-title').html(marked(value))
+    }
+    setTitle(titleInput.val())
+    titleInput.keyup(function(){
+        setTitle($(this).val())
+    })
+
+
 </script>
 
 <!-- Plugin CSS -->
