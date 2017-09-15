@@ -115,8 +115,27 @@
 
     </section>
 
-    <section id="signup" class="col-md-9">
-        <div class="container">
+    <section id="signup" class="col-md-12" style="padding:120px">
+        <div class="container" style="padding:120px">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-heading">
+                        <h2>Stop waiting.<br>Start Blogging.</h2>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="col-md-2 col-sm-offset-4">
+                <a class="btn btn-outline" href="/user/login">
+                    &emsp;&emsp;Login&emsp;&emsp;
+                </a>
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-outline" href="/user/register">
+                    &emsp;Register&emsp;
+                </a>
+            </div>
+            <!--
             <div class="row" style="padding:120px">
                 <div class="col-md-4 col-sm-offset-3">
 
@@ -126,17 +145,16 @@
                 <input type='submit' class='btn btn-primary' value='Login' />
             </form>
 
-        </div>
-                <div class="col-md-4">
-
-            <h2 style='color:"#007bff";'>Register</h2>
-            <form method='POST' action='/user/register/' enctype='multipart/form-data'>{% csrf_token %}
-                {{ form2 | crispy }}
-                <input type='submit' class='btn btn-primary' value='Register' />
-            </form>
-        </div>
             </div>
-        </div>
+            <div class="col-md-4">
+
+                <h2 style='color:"#007bff";'>Register</h2>
+                <form method='POST' action='/user/register/' enctype='multipart/form-data'>{% csrf_token %}
+                    {{ form2 | crispy }}
+                    <input type='submit' class='btn btn-primary' value='Register' />
+                </form>
+            </div>
+            -->
     </section>
 
 {% endblock content %}

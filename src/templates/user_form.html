@@ -12,11 +12,19 @@
         {{ form | crispy }}
         <input type='submit' class='btn btn-primary' value='{{ title }}' />
     </form>
-    {% if title == 'Login' %}
-    <a href="/user/register/">Not registered ?</a>
-    {% else %}
-    <a href="/user/login/">Already registered ?</a>
-    {% endif %}
+
+    <div class="row">
+        <div class="col-md-6 ">
+            {% if title == 'Login' %}
+            <a href="/user/register/">Not registered ?</a>
+            {% else %}
+            <a href="/user/login/">Already registered ?</a>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <a href="/">Go Back</a>
+        </div>
+    </div>
 
     <br><br><br><br>
 </div>

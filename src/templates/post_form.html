@@ -12,30 +12,35 @@
 {% endblock head_extra %}
 
 {% block content %}
-<div class="col-sm-6">
-    <h1>Preview</h1>
-    <hr>
-    <div class="post-preview">
-        <h3 id="preview-title"></h3>
-        <p id="preview-content"></p>
+
+<div class="row col-md-12" style="padding='20px;'">
+
+    <div class="col-md-4 col-md-offset-2">
+        <h1>Preview</h1>
+        <hr>
+        <div class="post-preview">
+            <h3 id="preview-title"></h3>
+            <p id="preview-content"></p>
+        </div>
+
     </div>
-    <hr>
+
+    <div class="col-md-4">
+        <h1>Form</h1>
+        <hr>
+        <form method='POST' action='' enctype="multipart/form-data">
+             <!-- Every form field should have this tag to prevent form cross sire request forgery -->
+            {% csrf_token %}
+            <!--
+                as_p  means as paragraph
+                added crispy form filter
+            -->
+            {{ form | crispy }}
+            <input class="btn btn-primary" type='submit' value='Create Post'/>
+        </form>
+        <hr>
+    </div>
+
 </div>
 
-<div class="col-sm-6">
-    <h1>Form</h1>
-    <hr>
-    <form method='POST' action='' enctype="multipart/form-data">
-         <!-- Every form field should have this tag to prevent form cross sire request forgery -->
-        {% csrf_token %}
-
-        <!--
-            as_p  means as paragraph
-            added crispy form filter
-        -->
-        {{ form | crispy }}
-        <input class="btn btn-primary" type='submit' value='Create Post'/>
-    </form>
-    <hr>
-</div>
 {% endblock content %}

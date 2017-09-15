@@ -22,11 +22,11 @@ from django.conf.urls.static import static
 
 from .views import home
 # from posts.views import post_list
-from accounts.views import auth_view
+# from accounts.views import auth_view
 
 urlpatterns = [
-    #url(r'^$', home),
-    url(r'^$', auth_view, name='list'),
+    url(r'^$', home),
+    # url(r'^$', auth_view),
     url(r'^admin/', admin.site.urls),
     url(r'^posts/', include("posts.urls", namespace="posts")),
     url(r'^user/', include("accounts.urls", namespace="accounts"))
