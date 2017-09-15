@@ -20,7 +20,7 @@
 <script>
     $(document).ready(function(){
         $(".content-markdown").each(function(){
-            var content = $(".content-markdown").text()
+            var content = $(this).text()
             console.log(content)
             var markedContent = marked(content)
             console.log(markedContent)
