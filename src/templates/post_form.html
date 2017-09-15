@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
+
 
 {% block head.title %} New blog | {{ block.super }} {% endblock head.title %}
 
@@ -24,8 +26,11 @@
          <!-- Every form field should have this tag to prevent form cross sire request forgery -->
         {% csrf_token %}
 
-        <!--as_p  means as paragraph-->
-        {{ form.as_p }}
+        <!--
+            as_p  means as paragraph
+            added crispy form filter
+        -->
+        {{ form | crispy }}
         <input class="btn btn-default" type='submit' value='Create Post'/>
     </form>
     <hr>
