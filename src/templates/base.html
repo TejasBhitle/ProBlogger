@@ -37,7 +37,9 @@
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
 
-    {% include 'nav_bar.html' %}
+    {% block navbar %}
+
+    {% endblock navbar %}
 
     <div style="padding-top:70px;">
     {% block content %}

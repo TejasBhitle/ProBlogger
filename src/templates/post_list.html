@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 
+{% block navbar %}
+    {% include 'nav_bar.html' %}
+{% endblock navbar %}
+
 {% block content %}
 
-<div class="col-sm-12 col-sm-offset-2">
+<div class="col-md-12 col-sm-offset-4">
     <form method="get" action="">
         <input type="text" name="q" placeholder="Search Blog" value="{{ request.GET.q }}">
         <input class="btn btn-primary" type="submit" value="Search">
@@ -10,7 +14,7 @@
 </div>
 
 <br><br><br>
-<div class="col-sm-8 col-sm-offset-2">
+<div class="col-sm-6 col-sm-offset-3">
     <div class="row">
 
         {% for post in post_list %}

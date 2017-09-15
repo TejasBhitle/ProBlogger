@@ -2,10 +2,12 @@ from django.conf.urls import url
 
 from .views import (login_view,
                     logout_view,
-                    register_view)
+                    register_view,
+                    auth_view)
 
 urlpatterns = [
     url(r'^login/', login_view),
     url(r'^logout/', logout_view),
     url(r'^register/', register_view),
+    url(r'^auth/', auth_view)
 ]

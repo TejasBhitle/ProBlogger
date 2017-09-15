@@ -1,29 +1,142 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block head.title %} {{ title }} | {{ block.super }} {% endblock head.title %}
+
+{% block head_extra %}
+    <link rel="stylesheet" href='{% static  "css/index.css" %}  '>
+{% endblock head_extra %}
+
+{% block navbar %}
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top"
+                  style="height:0px;padding-top:13px;padding-bottom:13px";>
+                <h2 style="margin-top:0px;margin-bottom:0px">ProBlogger
+                  <h1>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="page-scroll" href="#features"><h4>Features</h4></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#signup"><h4>Sign-up</h4></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="https://github.com/TejasBhitle/ProBlogger"><h4>Source</h4></a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+{% endblock navbar %}
+
 
 {% block content %}
-    <header>
-        <div class="container">
+
+<div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="inner cover">
+            <h1 class="cover-heading">Blog like a Pro.</h1>
+            <p class="lead">ProBlogger is an Open Source Application that lets you to create and publish your blog in minimal time.</p>
+            <p class="lead">
+              <a href="/posts/" class="btn btn-lg btn-secondary">Get Started</a>
+            </p>
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p></p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <section id="features">
+        <div class="container" style="padding:120px">
             <div class="row">
-                <div class="col-sm-7">
-                    <div class="header-content">
-                        <div class="header-content-inner">
-                            <h1>Welcome</h1>
-                            <a href="/posts/" class="btn btn-outline btn-xl page-scroll">View Posts</a>
-                            <br><br><br>
-                            List of urls:
-                            <ul>
-                                <li>/admin</li>
-                                <li>/posts/</li>
-                                <li>/posts/id</li>
-                                <li>/posts/create</li>
-                                <li>/user/register/</li>
-                                <li>/user/login/</li>
-                                <li>/user/logout/</li>
-                            </ul>
-                        </div>
+                <div class="col-lg-12 text-center">
+                    <div class="section-heading">
+                        <h2>Features</h2>
                     </div>
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="feature-item" >
+                    <i class="icon-user text-primary"></i>
+                    <h3>Supports Markdown</h3>
+                    <p class="text-muted">Using marked and django-pagedown </p>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feature-item">
+                    <i class="icon-user text-primary"></i>
+                    <h3>Clean UI </h3>
+                    <p class="text-muted">Using Bootstrap and Crispy forms.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feature-item">
+                    <i class="icon-user text-primary"></i>
+                    <h3>We Bring People Together</h3>
+                    <p class="text-muted">in celebration over food and fun in a welcoming home.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feature-item">
+                    <i class="icon-user text-primary"></i>
+                    <h3>We Bring People Together</h3>
+                    <p class="text-muted">in celebration over food and fun in a welcoming home.</p>
+                </div>
+            </div>
+
         </div>
-    </header>
+
+    </section>
+
+    <section id="signup" class="col-md-9">
+        <div class="container">
+            <div class="row" style="padding:120px">
+                <div class="col-md-4 col-sm-offset-3">
+
+            <h2 style='color:"#007bff";'>Login</h2>
+            <form method='POST' action='/user/login/' enctype='multipart/form-data'>{% csrf_token %}
+                {{ form1 | crispy }}
+                <input type='submit' class='btn btn-primary' value='Login' />
+            </form>
+
+        </div>
+                <div class="col-md-4">
+
+            <h2 style='color:"#007bff";'>Register</h2>
+            <form method='POST' action='/user/register/' enctype='multipart/form-data'>{% csrf_token %}
+                {{ form2 | crispy }}
+                <input type='submit' class='btn btn-primary' value='Register' />
+            </form>
+        </div>
+            </div>
+        </div>
+    </section>
+
 {% endblock content %}
