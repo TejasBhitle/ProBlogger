@@ -7,8 +7,8 @@
         {% if user.is_authenticated %}
 
         <div class="dropdown navbar-text">
-            <button class="btn btn-default dropdown-toggle" type="button"
-                    id="dropdownMenu1" data-toggle="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button"
+                    id="dropdownMenu1" data-toggle="dropdown" style="color:FFFFFF;">
                     {{ user.username }}
                 <span class="caret"></span>
             </button>
@@ -22,12 +22,14 @@
         {% else %}
 
         <div class="dropdown navbar-text">
-            <button class="btn btn-default ">
-                <a class="dropdown" href="/user/login"> Login </a>
-            </button>
+            <a class="dropdown btn btn-primary" style="color:FFFFFF;" href="/user/login"> Login </a>
         </div>
 
         {% endif %}
+
+        <div class="navbar-text">
+            <a class="btn btn-primary" style="color:#FFFFFF;" href="/">Home </a>
+        </div>
 
 
     </div>
