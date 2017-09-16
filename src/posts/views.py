@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.shortcuts import HttpResponse, HttpResponseRedirect, Http404
-from django.contrib.contenttypes.models import ContentType
+
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from urllib import quote_plus
@@ -63,9 +63,10 @@ def post_create(request):
 
 def post_detail(request, post_id):
     instance = get_object_or_404(Post, id=post_id)
-    content_type = ContentType.objects.get_for_model(Post)
-    obj_id = instance.id
-    comments = Comment.objects.filter(content_type=content_type, object_id=obj_id)
+
+    # method defined in comment/models.py
+    comments = Comment.objects.filter_by_instance(instance)
+
     context ={
         "post": instance,
         "comments": comments
