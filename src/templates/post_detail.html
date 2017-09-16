@@ -52,11 +52,13 @@
 
         <div>
             <p class='lead'>Comments</p>
+            <hr>
             {% for comment in comments %}
-                <div class="">
-                    {{ comment.content }}
-                    <br><small>via {{ comment.user }} on {{ comment.created |timesince }} ago</small> <br>
-                </div>
+                <blockquote>
+                    <p>{{ comment.content }}</p>
+                    <p><small>By {{ comment.user }}, {{ comment.created |timesince }} ago</small></p>
+                </blockquote>
+            <hr>
             {% endfor %}
         </div>
         <!--dummy url for comments-> https://developers.facebook.com/docs/plugins/comments#configurator
