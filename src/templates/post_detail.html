@@ -60,8 +60,18 @@
             {% for comment in comments %}
                 <blockquote>
                     <p>{{ comment.content }}</p>
-                    <p><small>By {{ comment.user }}, {{ comment.created |timesince }} ago</small></p>
+                    <p>
+                        <small>
+                        By {{ comment.user }}, {{ comment.created |timesince }} ago |
+                        {% if comment.children.count > 0 %}
+                            {{ comment.children.count }} comment{% if comment.children.count > 1 %}s{% endif %}
+                        | {% endif%}
 
+                        <a class='comment-reply-btn' href="#" > Reply</a>
+                        </small>
+                    </p>
+
+                    <div class="comment-reply" style="display:none;">
                         {% for child in comment.children %}
                         <blockquote>
                             <p>{{ child.content }}</p>
@@ -69,11 +79,12 @@
                         </blockquote>
                         {% endfor %}
 
-                    <form method="post" action=".">{% csrf_token %}
-                        {{ comment_form | crispy }}
-                        <input type="hidden" name="parent_id" value="{{ comment.id }}">
-                        <input class="btn btn-default" type="submit" value="Reply">
-                    </form>
+                        <form method="post" action=".">{% csrf_token %}
+                            {{ comment_form | crispy }}
+                            <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                            <input class="btn btn-default" type="submit" value="Reply">
+                        </form>
+                    </div>
 
                 </blockquote>
             <hr>
@@ -90,6 +101,16 @@
     <a class="btn btn-default" href="/posts/{{ post.id }}/delete"> Delete </a>
     {% endif %}
     <br><br><br><br><br><br><br><br>
+
+    <script>
+        //writing this script in 'scripts.html' doesn't work for some reason :-(
+        $(".comment-reply-btn").click(function(event){
+        event.preventDefault();
+        /* a -> small -> p -> "comment-reply" */
+        $(this).parent().parent().next(".comment-reply").fadeToggle();
+    })
+    </script>
+
 </div>
 
 
