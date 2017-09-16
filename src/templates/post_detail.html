@@ -49,9 +49,13 @@
         <br><br>
         Updated at: {{ post.updated }}
         <br><br><hr>
-        <!--dummy url for comments-> https://developers.facebook.com/docs/plugins/comments#configurator-->
+
+        <div>
+            {{ instance.comments_set.all }}
+        </div>
+        <!--dummy url for comments-> https://developers.facebook.com/docs/plugins/comments#configurator
         <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>
-        <br><br>
+        <br><br>-->
 
     </div>
     <br><hr>
