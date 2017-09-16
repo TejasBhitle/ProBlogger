@@ -37,8 +37,12 @@
                 Reddit
             </a>
         </p>
-        <hr>
-
+        <br>
+        {% if user == post.user %}
+        <a class="btn btn-default" href="/posts/{{ post.id }}/edit"> Edit </a>
+        <a class="btn btn-default" href="/posts/{{ post.id }}/delete"> Delete </a>
+        {% endif %}
+        <br><hr>
         {% if post.image %}
         <img src="{{ post.image.url }}" class="img-responsive"/>
         <br>
@@ -95,11 +99,7 @@
         <br><br>-->
 
     </div>
-    <br><hr>
-    {% if user == post.user %}
-    <a class="btn btn-default" href="/posts/{{ post.id }}/edit"> Edit </a>
-    <a class="btn btn-default" href="/posts/{{ post.id }}/delete"> Delete </a>
-    {% endif %}
+
     <br><br><br><br><br><br><br><br>
 
     <script>
