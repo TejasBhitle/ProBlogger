@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.shortcuts import HttpResponse, HttpResponseRedirect, Http404
-
+from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from urllib import quote_plus
@@ -9,7 +9,8 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Post
 from .forms import PostForm
-
+from comment.models import Comment
+from comment.forms import CommentForm
 # Create your views here.
 
 
@@ -46,7 +47,7 @@ def post_list(request):
 
 @login_required(login_url='/user/login/')
 def post_create(request):
-    #if not request.user.is_staff or not request.user.is_superuser:
+    # if not request.user.is_staff or not request.user.is_superuser:
     #    raise Http404
     form = PostForm(request.POST or None, request.FILES or None)  # so that null fields dont pass through
     if form.is_valid():
@@ -63,8 +64,44 @@ def post_create(request):
 
 def post_detail(request, post_id):
     instance = get_object_or_404(Post, id=post_id)
+
+    initial_data = {
+        "content_type": instance.get_content_type,
+        "object_id": instance.id
+    }
+    comment_form = CommentForm(request.POST or None, initial=initial_data)
+    if comment_form.is_valid():
+        c_type = comment_form.cleaned_data.get('content_type')
+        content_type = ContentType.objects.get(model=c_type)
+        obj_id = comment_form.cleaned_data.get('object_id')
+        content_data = comment_form.cleaned_data.get('content')
+        parent_obj = None
+        try:
+            parent_id = int(request.POST.get("parent_id"))
+        except:
+            parent_id = None
+
+        if parent_id:
+            parent_queryset = Comment.objects.filter(id=parent_id)
+            if parent_queryset.exists() and parent_queryset.count() == 1:
+                parent_obj = parent_queryset.first()
+
+        new_comment, created = Comment.objects.get_or_create(
+            user=request.user,
+            content_type=content_type,
+            object_id=obj_id,
+            content=content_data,
+            parent=parent_obj,
+        )
+        return HttpResponseRedirect(new_comment.content_object.get_absolute_url())
+
+    # method defined in comment/models.py
+    comments = Comment.objects.filter_by_instance(instance)
+
     context ={
-        "post": instance
+        "post": instance,
+        "comments": comments,
+        "comment_form": comment_form
     }
     return render(request, "post_detail.html", context)
 

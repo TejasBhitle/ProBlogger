@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load crispy_forms_tags %}
 {% block head.title %} {{ post.title }} | {{ block.super }} {% endblock head.title %}
 
 {% block navbar %}
@@ -49,9 +49,50 @@
         <br><br>
         Updated at: {{ post.updated }}
         <br><br><hr>
-        <!--dummy url for comments-> https://developers.facebook.com/docs/plugins/comments#configurator-->
+
+        <div>
+            <p class='lead'>Comments</p>
+            <form method="post" action=".">{% csrf_token %}
+                {{ comment_form | crispy }}
+                <input class="btn btn-default" type="submit" value="Post comment">
+            </form>
+            <hr>
+            {% for comment in comments %}
+                <blockquote>
+                    <p>{{ comment.content }}</p>
+                    <p>
+                        <small>
+                        By {{ comment.user }}, {{ comment.created |timesince }} ago |
+                        {% if comment.children.count > 0 %}
+                            {{ comment.children.count }} comment{% if comment.children.count > 1 %}s{% endif %}
+                        | {% endif%}
+
+                        <a class='comment-reply-btn' href="#" > Reply</a>
+                        </small>
+                    </p>
+
+                    <div class="comment-reply" style="display:none;">
+                        {% for child in comment.children %}
+                        <blockquote>
+                            <p>{{ child.content }}</p>
+                             <p><small>By {{ child.user }}, {{ child.created |timesince }} ago</small></p>
+                        </blockquote>
+                        {% endfor %}
+
+                        <form method="post" action=".">{% csrf_token %}
+                            {{ comment_form | crispy }}
+                            <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                            <input class="btn btn-default" type="submit" value="Reply">
+                        </form>
+                    </div>
+
+                </blockquote>
+            <hr>
+            {% endfor %}
+        </div>
+        <!--dummy url for comments-> https://developers.facebook.com/docs/plugins/comments#configurator
         <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>
-        <br><br>
+        <br><br>-->
 
     </div>
     <br><hr>
@@ -60,6 +101,16 @@
     <a class="btn btn-default" href="/posts/{{ post.id }}/delete"> Delete </a>
     {% endif %}
     <br><br><br><br><br><br><br><br>
+
+    <script>
+        //writing this script in 'scripts.html' doesn't work for some reason :-(
+        $(".comment-reply-btn").click(function(event){
+        event.preventDefault();
+        /* a -> small -> p -> "comment-reply" */
+        $(this).parent().parent().next(".comment-reply").fadeToggle();
+    })
+    </script>
+
 </div>
 
 
