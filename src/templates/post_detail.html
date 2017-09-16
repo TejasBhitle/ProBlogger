@@ -51,7 +51,13 @@
         <br><br><hr>
 
         <div>
-            {{ instance.comments_set.all }}
+            <p class='lead'>Comments</p>
+            {% for comment in comments %}
+                <div class="">
+                    {{ comment.content }}
+                    <br><small>via {{ comment.user }} on {{ comment.created |timesince }} ago</small> <br>
+                </div>
+            {% endfor %}
         </div>
         <!--dummy url for comments-> https://developers.facebook.com/docs/plugins/comments#configurator
         <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>
