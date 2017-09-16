@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.conf import settings
+from django.contrib.contenttypes.models import ContentType
 
 
 def upload_location(instance, filename):
@@ -33,3 +34,10 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return "/posts/%s/" %(self.id)
+
+    @property
+    def get_content_type(self):
+        instance = self
+        content_type = ContentType.objects.get_for_model(instance.__class__)
+        return content_type
+

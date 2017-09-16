@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load crispy_forms_tags %}
 {% block head.title %} {{ post.title }} | {{ block.super }} {% endblock head.title %}
 
 {% block navbar %}
@@ -52,6 +52,10 @@
 
         <div>
             <p class='lead'>Comments</p>
+            <form method="post" action=".">{% csrf_token %}
+                {{ comment_form | crispy }}
+                <input class="btn btn-default" type="submit" value="Post comment">
+            </form>
             <hr>
             {% for comment in comments %}
                 <blockquote>
