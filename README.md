@@ -5,5 +5,5 @@ A blogging website with Pro features
 Developed using django 1.9
 
 ## Installation
-pip install django-pagedown
-pip install django-crispy-forms
+pip install django-pagedown <br>
+pip install django-crispy-forms <br>
