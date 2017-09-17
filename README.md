@@ -6,3 +6,4 @@ Developed using django 1.9
 
 ## Installation
 pip install django-pagedown
+pip install django-crispy-forms
