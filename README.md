@@ -7,3 +7,4 @@ Developed using django 1.9
 ## Installation
 pip install django-pagedown <br>
 pip install django-crispy-forms <br>
+pip install Pillow <br>
