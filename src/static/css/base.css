@@ -207,3 +207,8 @@ header .header-content .header-content-inner h1 {
     margin-right: 0px !important;
     margin-left: 0px !important;
 }
+
+.search-bar {
+  text-align: center;
+  color: #000;
+}
