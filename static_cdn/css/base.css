@@ -164,11 +164,11 @@ header .header-content .header-content-inner h1 {
     font-size: 35px;
   }
 
-@media (min-width: 992px) {
+
   header .header-content .header-content-inner h1 {
     font-size: 50px;
   }
-}
+
 
 .btn-outline {
   color: white;
